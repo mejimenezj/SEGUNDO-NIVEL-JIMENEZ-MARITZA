@@ -1,38 +1,37 @@
-# Definición de una clase Persona que utiliza constructor y destructor
-class Persona:
-    # Constructor: Inicializa los atributos nombre y edad
-    def __init__(self, nombre, edad):
-        self.nombre = nombre
-        self.edad = edad
-        print(f"Persona {self.nombre}, de {self.edad} años, ha sido creada.")
+class FileHandler:
+    def __init__(self, file_name, mode):
+        """Constructor que inicializa y abre un archivo."""
+        self.file_name = file_name
+        self.mode = mode
+        self.file = None
+        try:
+            self.file = open(self.file_name, self.mode)
+            print(f"Archivo '{self.file_name}' abierto en modo '{self.mode}'.")
+        except Exception as e:
+            print(f"Error al abrir el archivo: {e}")
 
-    # Método para mostrar información de la persona
-    def mostrar_info(self):
-        print(f"Nombre: {self.nombre}, Edad: {self.edad}")
+    def write_data(self, data):
+        """Escribe datos en el archivo."""
+        if self.file and not self.file.closed:
+            self.file.write(data)
+        else:
+            print("El archivo no está abierto.")
 
-    # Destructor: Realiza una acción de limpieza (en este caso, solo imprime un mensaje)
+    def read_data(self):
+        """Lee datos del archivo."""
+        if self.file and not self.file.closed:
+            return self.file.read()
+        else:
+            print("El archivo no está abierto.")
+            return None
+
     def __del__(self):
-        print(f"Persona {self.nombre}, de {self.edad} años, ha sido destruida.")
+        """Destructor que cierra el archivo si está abierto."""
+        if self.file and not self.file.closed:
+            self.file.close()
+            print(f"Archivo '{self.file_name}' cerrado.")
 
-
-# Función principal para demostrar el uso de la clase Persona
-def main():
-    # Crear una instancia de Persona
-    persona1 = Persona("Alice", 30)
-    # Mostrar la información de la persona
-    persona1.mostrar_info()
-
-    # Crear otra instancia de Persona
-    persona2 = Persona("Bob", 25)
-    # Mostrar la información de la persona
-    persona2.mostrar_info()
-
-    # Eliminar la instancia persona2 explícitamente
-    del persona2
-
-    # La instancia persona1 será destruida automáticamente al finalizar el programa
-
-
-# Ejecutar la función principal
-if __name__ == "__main__":
-    main()
+# Ejemplo de uso
+file_handler = FileHandler('example.txt', 'w')
+file_handler.write_data('Hola, mundo!')
+del file_handler  # Esto llamará al destructor y cerrará el archivo
