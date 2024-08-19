@@ -1,37 +1,22 @@
-class FileHandler:
-    def __init__(self, file_name, mode):
-        """Constructor que inicializa y abre un archivo."""
-        self.file_name = file_name
-        self.mode = mode
-        self.file = None
-        try:
-            self.file = open(self.file_name, self.mode)
-            print(f"Archivo '{self.file_name}' abierto en modo '{self.mode}'.")
-        except Exception as e:
-            print(f"Error al abrir el archivo: {e}")
-
-    def write_data(self, data):
-        """Escribe datos en el archivo."""
-        if self.file and not self.file.closed:
-            self.file.write(data)
-        else:
-            print("El archivo no está abierto.")
-
-    def read_data(self):
-        """Lee datos del archivo."""
-        if self.file and not self.file.closed:
-            return self.file.read()
-        else:
-            print("El archivo no está abierto.")
-            return None
+# Consideraremos una clase Conexion que simula la apertura y cierre
+# de una conexión a una base de datos:
+class Conexion:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        print(f"Conexión a la base de datos '{self.nombre}' establecida.")
 
     def __del__(self):
-        """Destructor que cierra el archivo si está abierto."""
-        if self.file and not self.file.closed:
-            self.file.close()
-            print(f"Archivo '{self.file_name}' cerrado.")
+        print(f"Conexión a la base de datos '{self.nombre}' cerrada.")
 
-# Ejemplo de uso
-file_handler = FileHandler('example.txt', 'w')
-file_handler.write_data('Hola, mundo!')
-del file_handler  # Esto llamará al destructor y cerrará el archivo
+# Aquí, el constructor __init__ se encarga de establecer la conexión,
+# mientras que el destructor __del__ se encarga de cerrarla.
+
+# Al crear y eliminar instancias de Conexion, se pueden observar las acciones
+# de los constructores y destructores:
+
+mi_conexion = Conexion("BaseDatos1")
+del mi_conexion
+
+# La instancia mi_conexion de la clase Conexion se crea y luego se elimina.
+# Esto desencadena primero el constructor y luego el destructor, gestionando
+# adecuadamente la vida útil de la conexión.
