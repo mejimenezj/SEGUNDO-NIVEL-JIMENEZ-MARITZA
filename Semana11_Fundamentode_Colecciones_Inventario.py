@@ -55,26 +55,26 @@ class Inventario:
         except FileNotFoundError:
             print("Error: Archivo no encontrado.")
 
-            {
-                "001": {
-                    "id_producto": "001",
-                    "nombre": "Vino",
-                    "cantidad": 50,
-                    "precio": 0.10
-                },
-                "002": {
-                    "id_producto": "002",
-                    "nombre": "Lenteja",
-                    "cantidad": 60,
-                    "precio": 0.7
-                },
-                "003": {
-                    "id_producto": "003",
-                    "nombre": "Golosinas",
-                    "cantidad": 40,
-                    "precio": 0.05
-                },
-                "004": {
+        {
+        "001": {
+            "id_producto": "001",
+            "nombre": "Vino",
+            "cantidad": 50,
+            "precio": 0.10
+            },
+            "002": {
+            "id_producto": "002",
+            "nombre": "Lenteja",
+            "cantidad": 60,
+            "precio": 0.7
+            },
+            "003": {
+            "id_producto": "003",
+            "nombre": "Golosinas",
+            "cantidad": 40,
+            "precio": 0.05
+            },
+            "004": {
                     "id_producto": "004",
                     "nombre": "Leche",
                     "cantidad": 20,
